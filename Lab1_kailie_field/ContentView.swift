@@ -31,7 +31,7 @@ func flipButton(
     ZStack {
         RoundedRectangle(cornerRadius: 20)
             .fill(isFlipped && isPrimeNumber == isPrime ?
-                  (feedback == "YES" ? Color.green : Color.red) :
+                  (feedback == "✅" ? Color.green : Color.red) :
                     Color.gray)
             .frame(height: 60)
             .shadow(radius: 5)
@@ -122,7 +122,7 @@ struct ContentView : View {
                 HStack { // adding HStack to isolate its movements
                     Text("TIMER: \(timerDefault)")
                         .font(.title)
-                        .foregroundColor(timerDefault <= 5 ? .red : .primary)
+                        .foregroundColor(timerDefault <= 3 ? .red : .primary)
                         .padding(.leading, 16) // space from left edge
                         .padding(.bottom, 16) // space from bottom edge
                     Spacer()
@@ -178,7 +178,7 @@ struct ContentView : View {
         attempts += 1
         isFlipped = true
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             
             if attempts < 10 {
                 
@@ -219,12 +219,12 @@ struct ContentView : View {
         
         if isPrime == isPrimeNumber{
             
-            feedback = "YES"
+            feedback = "✅"
             correctScore += 1
             
         } else {
             
-            feedback = "NO"
+            feedback = "❌"
             incorrectScore -= 1
             
         }
