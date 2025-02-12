@@ -78,59 +78,73 @@ struct ContentView : View {
     @State private var isPrimeNumber = false
     
     var body: some View {
-        VStack(spacing: 50){
-            Text("\(testNumber)")
-                .font(.system(size: 100, weight: .bold))
-            Text("Is this a prime number?")
-                .font(.title)
-            
-            HStack(spacing: 40) {
-                flipButton(
-                    
-                    isPrime: true,
-                    isFlipped: isFlipped,
-                    isPrimeNumber: isPrimeNumber,
-                    feedback: feedback
-                    
-                ) {
-                    
-                    checkAnswer(true)
-                    
-                }
+        ZStack (alignment: .bottomLeading){ // bottom left alignment for the timer -- test
+            VStack(spacing: 80){
                 
-                flipButton(
+                Text("\(testNumber)")
+                    .font(.system(size: 100, weight: .bold))
+                
+                Text("Is this a prime number?")
+                    .font(.title)
+                
+                HStack(spacing: 40) {
+                    flipButton(
+                        
+                        isPrime: true,
+                        isFlipped: isFlipped,
+                        isPrimeNumber: isPrimeNumber,
+                        feedback: feedback
+                        
+                    ) {
+                        
+                        checkAnswer(true)
+                        
+                    }
                     
-                    isPrime: false,
-                    isFlipped: isFlipped,
-                    isPrimeNumber: isPrimeNumber,
-                    feedback: feedback
-                    
-                ) {
-                    
-                    checkAnswer(false)
+                    flipButton(
+                        
+                        isPrime: false,
+                        isFlipped: isFlipped,
+                        isPrimeNumber: isPrimeNumber,
+                        feedback: feedback
+                        
+                    ) {
+                        
+                        checkAnswer(false)
+                        
+                    }
                     
                 }
+                .padding()
             }
-            .padding()
-        }
-        .onAppear{
             
-            startQuiz()
+                    Text("TIMER: \(timerDefault)")
+                        .font(.title)
+                        .foregroundColor(timerDefault <= 5 ? .red : .primary)
+                        .padding(.leading, 16) // space from left edge
+                        .padding(.bottom, 16) // space from bottom edge
+        }
+        .onAppear {
+                
+                startQuiz()
+            
         }
         .alert(isPresented: $revealResult){
-            Alert(
-                
-                title: Text("GAME OVER"),
-                message: Text(
+            
+                Alert(
                     
+                    title: Text("GAME OVER"),
+                    message: Text(
+                        
                     "Correct: \(correctScore)\nIncorrect: \(incorrectScore)"),
                     dismissButton: .default(Text("RESTART"), action: startQuiz)
+                    
+                )
                 
-            )
+            }
             
         }
-        
-    }
+    
 
     // --- [ QUIZ LOGIC ] ---
     
