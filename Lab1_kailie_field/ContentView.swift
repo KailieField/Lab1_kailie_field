@@ -78,7 +78,7 @@ struct ContentView : View {
     @State private var isPrimeNumber = false
     
     var body: some View {
-        ZStack (alignment: .bottomLeading){ // bottom left alignment for the timer -- test
+        ZStack { // bottom left alignment for the timer -- test
             VStack(spacing: 80){
                 
                 Text("\(testNumber)")
@@ -117,13 +117,19 @@ struct ContentView : View {
                 }
                 .padding()
             }
-            
+            VStack {
+                Spacer() // trying out spacer as per documentation suggestion
+                HStack { // adding HStack to isolate its movements
                     Text("TIMER: \(timerDefault)")
                         .font(.title)
                         .foregroundColor(timerDefault <= 5 ? .red : .primary)
                         .padding(.leading, 16) // space from left edge
                         .padding(.bottom, 16) // space from bottom edge
+                    Spacer()
+                }
+            }
         }
+        .ignoresSafeArea(edges: .all) // pushing to the very bottom left
         .onAppear {
                 
                 startQuiz()
