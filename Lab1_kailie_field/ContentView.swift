@@ -179,22 +179,23 @@ struct ContentView : View {
         incorrectScore += 1
         feedback = "❌"
         attempts += 1
+        
+        if attempts >= 10 {
+            
+            revealResult = true
+            timer?.invalidate()
+            return
+            
+        }
+        
         isFlipped = true
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            nextQuizNumber()
             
-            if attempts < 10 {
-                
-                nextQuizNumber()
-                
-            } else {
-                
-                revealResult = true
-                timer?.invalidate()
-                
-            }
-        }
     }
+}
+    
     
     func nextQuizNumber(){
         
@@ -219,6 +220,15 @@ struct ContentView : View {
     }
     
     func checkAnswer(_ isPrime: Bool) {
+        timer?.invalidate()
+        attempts += 1
+        
+        if attempts >= 10{
+            
+            revealResult = true
+            timer?.invalidate()
+            return
+        }
         
         isFlipped = true
         
