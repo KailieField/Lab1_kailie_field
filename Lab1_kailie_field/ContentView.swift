@@ -135,6 +135,7 @@ struct ContentView : View {
     // --- [ QUIZ LOGIC ] ---
     
     func resetTimer(){
+        
         timer?.invalidate()
         timerDefault = 5
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true){
@@ -144,7 +145,7 @@ struct ContentView : View {
             if timerDefault == 0 {
                 
                 timer?.invalidate()
-                recordScore()
+                revealResult = true // game should end
                 
             }
         }
@@ -176,23 +177,24 @@ struct ContentView : View {
         testNumber = Int.random(in: 1...100)
         isPrimeNumber = checkPrime(testNumber)
         isFlipped = false
-        resetTimer()
-        
+        // removing resetTimer()
     }
     
     func startQuiz(){
         
         testNumber = Int.random(in: 1...100)
         isPrimeNumber = checkPrime(testNumber)
-        attempts = 0
         correctScore = 0
         incorrectScore = 0
+        feedback = ""
+        isFlipped = false
+        revealResult = false
+        resetTimer() // start timer
         
     }
     
     func checkAnswer(_ isPrime: Bool) {
         
-        attempts += 1
         isFlipped = true
         
         if isPrime == isPrimeNumber{
@@ -207,24 +209,15 @@ struct ContentView : View {
             
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             isFlipped = false
             feedback = ""
-            
-            if attempts >= 10 {
-                
-                attempts = 0
-                correctScore = 0
-                incorrectScore = 0
-                
-            } else {
-                
-                startQuiz()
+            nextQuizNumber() // moving to next number immediately
                 
             }
         }
     }
-}
+
 
  // --- [ LIVE PREVIEW ] --
 struct ContentView_Previews: PreviewProvider{
