@@ -34,7 +34,7 @@ func flipButton(
                   (feedback == "✅" ? Color.green : Color.red) :
                     Color.gray)
             .frame(height: 60)
-            .shadow(radius: 5)
+            .shadow(radius: 10)
             .rotation3DEffect(
                 Angle(
                     degrees: isFlipped && isPrimeNumber == isPrime ? 180 : 0),
@@ -78,7 +78,9 @@ struct ContentView : View {
     @State private var isPrimeNumber = false
     
     var body: some View {
-        ZStack { // bottom left alignment for the timer -- test
+        ZStack {
+            // bottom left alignment for the timer -- test
+            Color.green.opacity(0.2).edgesIgnoringSafeArea(.all)
             VStack(spacing: 80){
                 
                 Text("\(testNumber)")
@@ -158,6 +160,7 @@ struct ContentView : View {
         
         timer?.invalidate()
         timerDefault = 5
+        
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true){
             
             _ in timerDefault -= 1
@@ -165,7 +168,7 @@ struct ContentView : View {
             if timerDefault == 0 {
                 
                 timer?.invalidate()
-                revealResult = true // game should end
+                recordScore()
                 
             }
         }
@@ -174,7 +177,7 @@ struct ContentView : View {
     func recordScore (){
         
         incorrectScore += 1
-        feedback = "X"
+        feedback = "❌"
         attempts += 1
         isFlipped = true
         
@@ -187,6 +190,7 @@ struct ContentView : View {
             } else {
                 
                 revealResult = true
+                timer?.invalidate()
                 
             }
         }
@@ -197,7 +201,8 @@ struct ContentView : View {
         testNumber = Int.random(in: 1...100)
         isPrimeNumber = checkPrime(testNumber)
         isFlipped = false
-        // removing resetTimer()
+        timerDefault = 5
+        resetTimer()
     }
     
     func startQuiz(){
@@ -209,7 +214,7 @@ struct ContentView : View {
         feedback = ""
         isFlipped = false
         revealResult = false
-        resetTimer() // start timer
+        nextQuizNumber()
         
     }
     
