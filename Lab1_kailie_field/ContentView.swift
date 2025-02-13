@@ -1,4 +1,25 @@
 import SwiftUI
+//------------[ LAB TEST 1 || KAILIE FIELD| 100627702 ]------------
+
+//-------- [ Instructions ]:
+//-------- The screen should have the following requirements:
+
+//-------- Numbers are appearing on the screen randomly
+
+//-------- The user can tap on “Prime” or “Not Prime” labels
+
+//-------- When the correct answer is selected, the green tick is displayed on the screen and
+//         the red cross for the wrong answer
+
+//-------- The correct and wrong answers must be recorded
+
+//-------- After each 10 attempts, a dialog should be displayed on the screen displaying the
+//         information of how many correct and wrong answers the user has selected
+
+//-------- There is a timer integrated with the application which update the screen with a new
+//         number every 5 seconds. If the user does not select within this 5 second, a wrong
+//         answer would be recorded for them.
+
 
 // --- [ HELPER FUNCTIONS ] ---
 // --- prime number logic ---
@@ -18,8 +39,9 @@ func checkPrime(_ number: Int) -> Bool {
     return true
 }
 
-// --- [ FLIPPING BUTTON ] ---
-// -- if user does not choose a number within 5 second timer default, will be recorded as an incorrect answer in score card
+// --- [ FLIPPING ANSWER BUTTON ] ---
+// -- ** If user does not choose a number within 5 second timer default,
+//       will be recorded as an incorrect answer in score card **
 func flipButton(
     
     isPrime: Bool,
@@ -33,10 +55,10 @@ func flipButton(
     ZStack {
         Circle()
             .fill(isFlipped && isPrimeNumber == isPrime ?
-                  (feedback == "✅" ? Color.green : Color.red) : Color.yellow.opacity(0.4))
+                  (feedback == "✅" ? Color.green : Color.red) : Color.yellow.opacity(0.7))
             .frame(height: 150)
             .shadow(radius: 100)
-            .rotation3DEffect(
+            .rotation3DEffect( // --adding an animation to flip button
                 Angle(
                     degrees: isFlipped && isPrimeNumber == isPrime ? 180 : 0),
                     axis: (x: 0, y: 1, z: 0)
@@ -82,7 +104,7 @@ struct ContentView : View {
     var body: some View {
         ZStack {
             // bottom left alignment for the timer -- test -- removed as it is not a requirement that the timer be visible for submission, just had for own awareness.
-            Color.teal.opacity(0.2).edgesIgnoringSafeArea(.all)
+            Color.teal.opacity(0.3).edgesIgnoringSafeArea(.all)
             
             VStack(spacing: 30){
                 
@@ -93,7 +115,7 @@ struct ContentView : View {
                     .padding(.top, 250)
                 
                 // -- quiz question
-                Text("Is this a prime number?")
+                Text("Is this a Prime Number?")
                     .font(.custom("AvenirNext-DemiBold", size: 24))
                     .foregroundColor(.black)
                     .padding(.top, 30)
@@ -129,17 +151,17 @@ struct ContentView : View {
                 }
                 .padding()
             }
-            VStack {
-/*                Spacer()*/ // trying out spacer as per documentation suggestion
-                HStack { // adding HStack to isolate its movements
-//                    Text("TIMER: \(timerDefault)")
-//                        .font(.title)
-//                        .foregroundColor(timerDefault <= 3 ? .red : .primary)
-//                        .padding(.leading, 16) // space from left edge
-//                        .padding(.bottom, 16) // space from bottom edge
-//                    Spacer()
-                }
-            }
+//            VStack {
+///*                Spacer()*/ // trying out spacer as per documentation suggestion
+//                HStack { // adding HStack to isolate its movements
+////                    Text("TIMER: \(timerDefault)")
+////                        .font(.title)
+////                        .foregroundColor(timerDefault <= 3 ? .red : .primary)
+////                        .padding(.leading, 16) // space from left edge
+////                        .padding(.bottom, 16) // space from bottom edge
+////                    Spacer()
+//                }
+//            }
         }
         .ignoresSafeArea(edges: .all) // pushing to the very bottom left
         .onAppear {
@@ -184,6 +206,7 @@ struct ContentView : View {
         }
     }
     
+    // --- [ SCORE CARD LOGIC ] ---
     func recordScore (){
         
         incorrectScore += 1
@@ -206,7 +229,7 @@ struct ContentView : View {
     }
 }
     
-    
+    // --- [ REVEAL NEXT QUIZ NUMBER ] ---
     func nextQuizNumber(){
         
         testNumber = Int.random(in: 1...100)
@@ -216,6 +239,7 @@ struct ContentView : View {
         resetTimer()
     }
     
+    // --- [ START QUIZ ] ---
     func startQuiz(){
         
         testNumber = Int.random(in: 1...100)
@@ -228,7 +252,7 @@ struct ContentView : View {
         nextQuizNumber()
         
     }
-    
+    // --- [ CHECK USER ANSWER ] ---
     func checkAnswer(_ isPrime: Bool) {
         timer?.invalidate()
         attempts += 1
