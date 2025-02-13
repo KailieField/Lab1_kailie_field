@@ -1,5 +1,7 @@
 #--- Directories ---
-Lab1_kailie_field.xcodeproj
+Lab1_kailie_field.xcodeproj/
+Lab1_kailie_fieldTests/
+Lab1_kailie_fieldUITests/
 
 #--- macOS Files ---
 .DS_Store
