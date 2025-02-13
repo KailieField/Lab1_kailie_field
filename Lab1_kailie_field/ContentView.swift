@@ -31,12 +31,11 @@ func flipButton(
 ) -> some View{
     
     ZStack {
-        RoundedRectangle(cornerRadius: 20)
+        Circle()
             .fill(isFlipped && isPrimeNumber == isPrime ?
-                  (feedback == "✅" ? Color.green : Color.red) :
-                    Color.gray)
-            .frame(height: 60)
-            .shadow(radius: 10)
+                  (feedback == "✅" ? Color.green : Color.red) : Color.gray)
+            .frame(height: 150)
+            .shadow(radius: 100)
             .rotation3DEffect(
                 Angle(
                     degrees: isFlipped && isPrimeNumber == isPrime ? 180 : 0),
@@ -50,9 +49,10 @@ func flipButton(
             Text(feedback)
                 .font(.largeTitle)
                 .foregroundColor(.white)
+                .transition(.opacity)
             
         } else {
-            Text(isPrime ? "Prime" : "Not Prime")
+            Text(isPrime ? "PRIME" : "NOT PRIME")
                 .font(.headline)
                 .foregroundColor(.white)
             
