@@ -28,33 +28,37 @@ struct WelcomeView: View {
         ZStack {
             Color.teal.opacity(0.4).edgesIgnoringSafeArea(.all)
             
-            VStack(spacing: 20){
+            VStack(spacing: 30){
                 
-                Image("rabbit_welcome")
+                Spacer()
+                
+                Image("rabbit")
                     .resizable()
-                    .scaledToFit()
                     .frame(width: 250, height: 250)
-                
-                Text("Prime Time")
+                    .scaledToFit()
+                    .padding(.top, 250)
+                    
+                Spacer()
+                    Text("Prime Time")
+                    .font(.custom("AvenirNext-DemiBold", size: 24))
                     .font(.title)
                     .fontWeight(.bold)
                     .foregroundColor(.black)
-                
-                Spacer()
+                    .padding(10)
                 
                 Button(action: {
                     presentWelcomeScreen = false
                 }) {
                     ZStack {
                         Circle()
-                            .fill(Color.yellow.opacity(0.4))
-                            .frame(width: 70, height: 70)
-                        Text("Hop")
+                            .fill(Color.yellow.opacity(0.7))
+                            .frame(width: 100, height: 100)
+                        Text("Hop In")
                             .font(.headline)
                             .foregroundColor(.black)
                     }
                 }
-                .shadow(radius: 5)
+                .shadow(radius: 10)
                 Spacer()
             }
         }
