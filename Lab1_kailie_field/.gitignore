@@ -1,0 +1,38 @@
+#--- Directories ---
+Lab1_kailie_field.xcodeproj/
+Lab1_kailie_fieldTests/
+Lab1_kailie_fieldUITests/
+
+#--- macOS Files ---
+.DS_Store
+.AppleDouble
+.LSOverride
+
+#--- Swift/XCode ---
+build/
+DerivedData/
+
+#--- XCode Workspace Settings ---
+*.xcworkspace
+xcuserdata/
+
+#--- Temporary Files ---
+*xctest
+*xcscmblueprint
+*.tmp
+*.log
+
+#--- Test Results ---
+*xccheckout
+*xcresult
+
+#--- Playground Files ---
+timeline.xctimeline
+playground.xcworkspace
+
+#--- Git Specific ---
+.git/
+.gitignore/
+
+#--- Misc ---
+Pods/
