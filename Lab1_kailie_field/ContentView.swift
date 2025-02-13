@@ -83,15 +83,23 @@ struct ContentView : View {
         ZStack {
             // bottom left alignment for the timer -- test -- removed as it is not a requirement that the timer be visible for submission, just had for own awareness.
             Color.green.opacity(0.2).edgesIgnoringSafeArea(.all)
-            VStack(spacing: 80){
+            
+            VStack(spacing: 30){
                 
+                // -- quiz number display
                 Text("\(testNumber)")
                     .font(.system(size: 100, weight: .bold))
+                    .foregroundColor(.primary)
+                    .padding(.top, 250)
                 
+                // -- quiz question
                 Text("Is this a prime number?")
-                    .font(.title)
+                    .font(.custom("AvenirNext-DemiBold", size: 24))
+                    .foregroundColor(Color.gray)
+                    .padding(.top, 30)
                 
-                HStack(spacing: 40) {
+                // -- answer selection
+                HStack(spacing: 30) {
                     flipButton(
                         
                         isPrime: true,
