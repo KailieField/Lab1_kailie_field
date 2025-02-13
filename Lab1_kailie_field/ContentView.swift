@@ -33,7 +33,7 @@ func flipButton(
     ZStack {
         Circle()
             .fill(isFlipped && isPrimeNumber == isPrime ?
-                  (feedback == "✅" ? Color.green : Color.red) : Color.gray)
+                  (feedback == "✅" ? Color.green : Color.red) : Color.yellow.opacity(0.4))
             .frame(height: 150)
             .shadow(radius: 100)
             .rotation3DEffect(
@@ -48,13 +48,13 @@ func flipButton(
             
             Text(feedback)
                 .font(.largeTitle)
-                .foregroundColor(.white)
+                .foregroundColor(.black)
                 .transition(.opacity)
             
         } else {
             Text(isPrime ? "PRIME" : "NOT PRIME")
                 .font(.headline)
-                .foregroundColor(.white)
+                .foregroundColor(.black)
             
         }
     }
@@ -82,7 +82,7 @@ struct ContentView : View {
     var body: some View {
         ZStack {
             // bottom left alignment for the timer -- test -- removed as it is not a requirement that the timer be visible for submission, just had for own awareness.
-            Color.green.opacity(0.2).edgesIgnoringSafeArea(.all)
+            Color.teal.opacity(0.2).edgesIgnoringSafeArea(.all)
             
             VStack(spacing: 30){
                 
@@ -95,7 +95,7 @@ struct ContentView : View {
                 // -- quiz question
                 Text("Is this a prime number?")
                     .font(.custom("AvenirNext-DemiBold", size: 24))
-                    .foregroundColor(Color.gray)
+                    .foregroundColor(.black)
                     .padding(.top, 30)
                 
                 // -- answer selection
@@ -130,7 +130,7 @@ struct ContentView : View {
                 .padding()
             }
             VStack {
-                Spacer() // trying out spacer as per documentation suggestion
+/*                Spacer()*/ // trying out spacer as per documentation suggestion
                 HStack { // adding HStack to isolate its movements
 //                    Text("TIMER: \(timerDefault)")
 //                        .font(.title)
@@ -151,7 +151,7 @@ struct ContentView : View {
             
                 Alert(
                     
-                    title: Text("GAME OVER"),
+                    title: Text("SCORE"),
                     message: Text(
                         
                     "Correct: \(correctScore)\nIncorrect: \(incorrectScore)"),
