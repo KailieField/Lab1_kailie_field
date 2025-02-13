@@ -306,7 +306,6 @@ struct QuizView : View {
     // --- [ CHECK USER ANSWER ] ---
     func checkAnswer(_ isPrime: Bool) {
         timer?.invalidate()
-        attempts += 1
         
         if attempts == 10{
             
@@ -314,6 +313,7 @@ struct QuizView : View {
             timer?.invalidate()
             return
         }
+        attempts += 1
         
         isFlipped = true
         
