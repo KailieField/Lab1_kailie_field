@@ -1,6 +1,7 @@
 import SwiftUI
 
 // --- [ HELPER FUNCTIONS ] ---
+// --- prime number logic ---
 func checkPrime(_ number: Int) -> Bool {
     
     if number < 2 {
@@ -18,6 +19,7 @@ func checkPrime(_ number: Int) -> Bool {
 }
 
 // --- [ FLIPPING BUTTON ] ---
+// -- if user does not choose a number within 5 second timer default, will be recorded as an incorrect answer in score card
 func flipButton(
     
     isPrime: Bool,
@@ -79,7 +81,7 @@ struct ContentView : View {
     
     var body: some View {
         ZStack {
-            // bottom left alignment for the timer -- test
+            // bottom left alignment for the timer -- test -- removed as it is not a requirement that the timer be visible for submission, just had for own awareness.
             Color.green.opacity(0.2).edgesIgnoringSafeArea(.all)
             VStack(spacing: 80){
                 
@@ -122,12 +124,12 @@ struct ContentView : View {
             VStack {
                 Spacer() // trying out spacer as per documentation suggestion
                 HStack { // adding HStack to isolate its movements
-                    Text("TIMER: \(timerDefault)")
-                        .font(.title)
-                        .foregroundColor(timerDefault <= 3 ? .red : .primary)
-                        .padding(.leading, 16) // space from left edge
-                        .padding(.bottom, 16) // space from bottom edge
-                    Spacer()
+//                    Text("TIMER: \(timerDefault)")
+//                        .font(.title)
+//                        .foregroundColor(timerDefault <= 3 ? .red : .primary)
+//                        .padding(.leading, 16) // space from left edge
+//                        .padding(.bottom, 16) // space from bottom edge
+//                    Spacer()
                 }
             }
         }
