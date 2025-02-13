@@ -24,7 +24,7 @@ The screen should have the following requirements:
 ##
 For this Lab Assignment, considering how much time we had, I wanted to try and make this a concurrent activity as this Lab Test not only was challenging, it was inspiring when it came to the condsideration of future projects.
 
-I wanted to add a small nuance within the UI as this is soemthing I personally enjoy and considering the capacity of XCode and Swift in the general sense, adding the smallest of animations to the buttons when pressed by the user.
+I wanted to add a small nuance within the UI as this is something I personally enjoy and considering the capacity of XCode and Swift in the general sense, adding the smallest of animations to the buttons when pressed by the user.
 I felt this was small when I began, but it most certainly required research, but it also required a LOT of trial and error -- hence why it was appreciated the amount of time that we were allotted for this assignment.
 
 Some really interesting things that I learned: 
