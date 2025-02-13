@@ -1,26 +1,71 @@
 import SwiftUI
 //------------[ LAB TEST 1 || KAILIE FIELD| 100627702 ]------------
 
-//-------- [ Instructions ]:
-//-------- The screen should have the following requirements:
+// ---------------------------[ WELCOME VIEW ]---------------------------
 
-//-------- Numbers are appearing on the screen randomly
+struct ContentView: View {
+    @State private var presentWelcomeScreen = true
+    
+    var body: some View {
+        
+        ZStack {
+            
+            if presentWelcomeScreen {
+                
+                WelcomeView(presentWelcomeScreen: $presentWelcomeScreen)
+            }else{
+                QuizView()
+            }
+        }
+    }
+}
 
-//-------- The user can tap on “Prime” or “Not Prime” labels
+struct WelcomeView: View {
+    
+    @Binding var presentWelcomeScreen: Bool
+    
+    var body: some View {
+        ZStack {
+            Color.teal.opacity(0.4).edgesIgnoringSafeArea(.all)
+            
+            VStack(spacing: 20){
+                
+                Image("rabbit_welcome")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 250, height: 250)
+                
+                Text("Prime Time")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .foregroundColor(.black)
+                
+                Spacer()
+                
+                Button(action: {
+                    presentWelcomeScreen = false
+                }) {
+                    ZStack {
+                        Circle()
+                            .fill(Color.yellow.opacity(0.4))
+                            .frame(width: 70, height: 70)
+                        Text("Hop")
+                            .font(.headline)
+                            .foregroundColor(.black)
+                    }
+                }
+                .shadow(radius: 5)
+                Spacer()
+            }
+        }
+    }
+}
 
-//-------- When the correct answer is selected, the green tick is displayed on the screen and
-//         the red cross for the wrong answer
-
-//-------- The correct and wrong answers must be recorded
-
-//-------- After each 10 attempts, a dialog should be displayed on the screen displaying the
-//         information of how many correct and wrong answers the user has selected
-
-//-------- There is a timer integrated with the application which update the screen with a new
-//         number every 5 seconds. If the user does not select within this 5 second, a wrong
-//         answer would be recorded for them.
 
 
+
+
+// ------------------------[ THE PRIME QUIZ VIEW ]------------------------
 // --- [ HELPER FUNCTIONS ] ---
 // --- prime number logic ---
 func checkPrime(_ number: Int) -> Bool {
@@ -89,7 +134,7 @@ func flipButton(
 
 // --- [ MAIN VIEW || QUIZ ] ---
 
-struct ContentView : View {
+struct QuizView : View {
     @State private var testNumber = Int.random(in: 1...100)
     @State private var timerDefault = 5
     @State private var correctScore = 0
