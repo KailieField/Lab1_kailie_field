@@ -2,6 +2,7 @@ import SwiftUI
 //------------[ LAB TEST 1 || KAILIE FIELD| 100627702 ]------------
 
 // ---------------------------[ WELCOME VIEW ]---------------------------
+// -- no exit option....need to add.
 
 struct ContentView: View {
     @State private var presentWelcomeScreen = true
@@ -139,6 +140,7 @@ func flipButton(
 // --- [ MAIN VIEW || QUIZ ] ---
 
 struct QuizView : View {
+    
     @State private var testNumber = Int.random(in: 1...100)
     @State private var timerDefault = 5
     @State private var correctScore = 0
@@ -230,9 +232,9 @@ struct QuizView : View {
                     
                 )
                 
-            }
-            
         }
+            
+    }
     
 
     // --- [ QUIZ LOGIC ] ---
@@ -306,7 +308,7 @@ struct QuizView : View {
         timer?.invalidate()
         attempts += 1
         
-        if attempts >= 10{
+        if attempts == 10{
             
             revealResult = true
             timer?.invalidate()
